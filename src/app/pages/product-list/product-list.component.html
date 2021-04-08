@@ -1,0 +1,41 @@
+  <div class="row">
+    <button class="btn btn-primary btn-block my-4" [routerLink]="['product/' + 0]" [disabled]="actionEvent">
+      <i class="fa fa-edit"></i>
+      Add new Product
+  </button>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 mt-2">
+      <h2>Product List</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products$ | async">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
+            <td>
+              <div class="btn-group">
+                <button [routerLink]="['product/' + product.id]" class="btn btn-info" [disabled]="actionEvent">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-danger" (click)="onDelete(product.id)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

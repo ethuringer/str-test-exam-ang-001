@@ -1,0 +1,40 @@
+<div class="row">
+    <div *ngIf="product$ | async as product" class="col-6 offset-3 mt-3">
+      <h2>Update / Create Product</h2>
+      <form #productForm="ngForm" (ngSubmit)="onUpdate(productForm, product)">
+        <input name="id" type="hidden" [(ngModel)]="product.id">
+        <div class="form-group">
+          <label>Name</label>
+          <input
+          class="form-control"
+          type="text"
+          name="name"
+          [(ngModel)]="product.name" 
+          pattern=".{8,40}" 
+          required>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+            <input
+            class="form-control"
+            type="text"
+            name="email"
+            [(ngModel)]="product.price"
+            pattern='' 
+            required>
+          </div>
+        <div class="form-group">
+            <label for="productCategory">Category</label>
+            <select class="form-control" data-style="btn btn-link" id="productCategory" name="productCategory"
+              [(ngModel)]="product.category" required>
+              <option [ngValue]="undefined">Select status...</option>
+              <option *ngFor="let category of productCategory | keyvalue" [ngValue]="category.value">{{category.value}}</option>
+            </select>
+        </div>
+        <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary btn-block mt-5">
+          <i class="fa fa-save"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+  
